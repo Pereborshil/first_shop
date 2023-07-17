@@ -3,26 +3,20 @@
 {% block zagolovok %}All courses{% endblock zagolovok %}
 
 {% block content %}
-<table class="table mt-5 table-bordered table-striped table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Students</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {%for course in courses%}
-        <tr>
-            <td><a href={% url 'single_course' course.id %}>{{course.title}}</a></td>
-            <td>{{course.category}}</td>
-            <td>{{course.price}}</td>
-            <td>{{course.students_qty}}</td>
-            <td><button class="btn btn-primary">Buy</button></td>
-        </tr>
-        {% endfor %}
+<div class="row">
+  {% for course in courses %}
+  <div class="col-md-4 mb-4">
+    <a href="{% url 'single_course' course.id %}" class="card custom-card" style="width: 15rem; text-decoration: none; margin-top: 20px;">
+      <div class="card-body">
+        <h5 class="card-title">{{ course.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{ course.category }}</h6>
+        <p class="card-text">Students: {{ course.students_qty }} Review: {{ course.reviews_qty }}</p>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+        </div>
     </tbody>
 </table>
 {% endblock content %}
